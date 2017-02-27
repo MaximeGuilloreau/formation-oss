@@ -1,0 +1,46 @@
+<?php
+
+namespace AppBundle\Form;
+
+use AppBundle\Entity\Job;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+/**
+ * Class JobType
+ */
+class JobType extends AbstractType
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('title', TextType::class)
+            ->add('description', TextareaType::class)
+            ->add('category', EntityType::class, [
+                'class' => 'AppBundle:Category',
+                'choice_label' => 'name',
+            ])
+            ->add('company', EntityType::class, [
+                'class' => 'AppBundle:Company',
+                'choice_label' => 'name',
+            ])
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => Job::class,
+        ]);
+    }
+}

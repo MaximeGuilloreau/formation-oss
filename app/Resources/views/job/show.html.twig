@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <h2>
+        Show Job
+    </h2>
+    <table class="table" >
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ job.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ job.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ job.description }}</td>
+            </tr>
+            <tr>
+                <th>Created At</th>
+                <td>{{ job.createdAt | date }}</td>
+            </tr>
+            <tr>
+                <th>updated At</th>
+                <td>{{ job.updatedAt | date }}</td>
+            </tr>
+            <tr>
+                <th>Expired At</th>
+                <td>{{ job.expiredAt | date }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{ form_start(deleteForm) }}
+        <button type="submit" >Delete</button>
+    {{ form_end(deleteForm) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('job_index') }}" >Back to list</a>
+        </li>
+    </ul>
+{% endblock %}
