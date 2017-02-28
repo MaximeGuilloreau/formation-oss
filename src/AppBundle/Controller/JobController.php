@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Job;
 use AppBundle\Form\JobType;
+use AppBundle\Form\SearchJobType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,10 +24,19 @@ class JobController extends Controller
      */
     public function indexAction(Request $request): Response
     {
-        $jobs = $this->getDoctrine()->getRepository(Job::class)->findAll();
+        $form = $this->createForm(SearchJobType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            $jobs = $this->getDoctrine()->getRepository(Job::class)->search($data);
+        } else {
+            $jobs = $this->getDoctrine()->getRepository(Job::class)->findAll();
+        }
 
         return $this->render('job/index.html.twig', [
             'jobs' => $jobs,
+            'form' => $form->createView(),
         ]);
     }
 

@@ -1,3 +1,27 @@
+back_to_list: Retour à la liste
 category:
-    new:
+    list:
         title: Créer une nouvelle categorie
+    edit:
+        title: Modifier la Categorie
+    new:
+        label: Créer une nouvelle Categorie
+    name:
+        label: Nom
+
+job:
+    new:
+        title: Créer un nouveau Job
+    edit:
+        title: Modifier le job
+        label: Modifier
+    title:
+        label: Titre
+    description:
+        label: Description
+    category:
+        label: Categorie
+    company:
+        label: Companie
+    create:
+        label: Sauvegarder

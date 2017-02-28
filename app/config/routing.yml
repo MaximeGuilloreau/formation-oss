@@ -1,3 +1,4 @@
 app:
+    prefix: "/{_locale}"
     resource: "@AppBundle/Controller/"
     type:     annotation

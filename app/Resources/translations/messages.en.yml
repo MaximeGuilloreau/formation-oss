@@ -1,3 +1,27 @@
+back_to_list: Back to list
 category:
-    new:
+    list:
         title: Create a new category
+    edit:
+        title: Edit Category
+    new:
+        label: Create a new Category
+    name:
+        label: Nom
+
+job:
+    new:
+        title: Create a new Job
+    edit:
+        title: Edit a job
+        label: Edit
+    title:
+        label: Title
+    description:
+        label: Description
+    category:
+        label: Category
+    company:
+        label: Company
+    create:
+        label: Save

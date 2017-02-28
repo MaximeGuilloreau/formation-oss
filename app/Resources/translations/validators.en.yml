@@ -1,0 +1,3 @@
+job:
+    title:
+        not_blank: The job title should not be blank

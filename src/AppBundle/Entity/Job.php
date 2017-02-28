@@ -3,9 +3,10 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\JobRepository")
  */
 class Job
 {
@@ -18,7 +19,7 @@ class Job
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(message="job.title.not_blank")
      * @ORM\Column(name="title", type="string", length=100)
      */
     private $title;
@@ -114,7 +115,7 @@ class Job
      * @param string $description
      * @return $this
      */
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
         $this->description = $description;
 
