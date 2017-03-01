@@ -29,9 +29,9 @@ class JobController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
-            $jobs = $this->getDoctrine()->getRepository(Job::class)->search($data);
+            $jobs = $this->get('formation_oss.job.manager')->search($data);
         } else {
-            $jobs = $this->getDoctrine()->getRepository(Job::class)->findAll();
+            $jobs = $this->get('formation_oss.job.manager')->findAll();
         }
 
         return $this->render('job/index.html.twig', [
@@ -56,8 +56,7 @@ class JobController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
+            $this->get('formation_oss.object_saver')->save($job);
 
             return $this->redirectToRoute('job_show', ['id' => $job->getId()]);
         }
@@ -80,12 +79,9 @@ class JobController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($job);
-            $em->flush();
+            $this->get('formation_oss.object_saver')->save($job);
 
             return $this->redirectToRoute('job_show', ['id' => $job->getId()]);
-
         }
 
         return $this->render('job/new.html.twig', [

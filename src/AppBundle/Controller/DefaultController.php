@@ -47,4 +47,16 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
+
+    /**
+     * @Route("/mobile", name="homepage_mobile")
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function indexMobileAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('default/mobile.html.twig');
+    }
 }

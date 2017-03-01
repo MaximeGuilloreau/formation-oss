@@ -1,9 +1,42 @@
-# Learn more about services, parameters and containers at
-# http://symfony.com/doc/current/service_container.html
 parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    formation_oss.job.manager:
+        class: AppBundle\Manager\JobManager
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@logger'
+
+    formation_oss.category.manager:
+        class: AppBundle\Manager\CategoryManager
+        arguments:
+            - '@doctrine.orm.entity_manager'
+    formation_oss.company.manager:
+        class: AppBundle\Manager\CompanyManager
+        arguments:
+            - '@doctrine.orm.entity_manager'
+
+    fomation_oss.address.manager:
+        class: AppBundle\Manager\AddressManager
+        arguments:
+            - '@doctrine.orm.entity_manager'
+
+    formation_oss.object_saver:
+        class: AppBundle\Saver\ObjectSaver
+        arguments:
+            - '@doctrine.orm.entity_manager'
+
+    formation_oss.mobile_detector:
+        class: AppBundle\Detector\MobileDetector
+
+    formation_oss.request_listerners:
+        class: AppBundle\Listeners\RequestListener
+        arguments:
+            - '@formation_oss.mobile_detector'
+            - '@router'
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: analyzeRequest, priority: 255 }
+
+
+
