@@ -3,6 +3,7 @@
 namespace AppBundle\Listeners;
 
 use AppBundle\Detector\MobileDetector;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -36,6 +37,7 @@ class RequestListener
      */
     public function analyzeRequest(GetResponseEvent $event)
     {
+        // Verifie Request est bien la requete principal
         if (!$event->isMasterRequest()) {
             return;
         }
@@ -50,10 +52,10 @@ class RequestListener
             return;
         }
 
-        $event->setResponse(
-            new RedirectResponse(
-                $this->router->generate(self::MOBILE_ROUTE, ['_locale' => 'en'])
-            )
-        );
+//        $event->setResponse(
+//            new RedirectResponse(
+//                $this->router->generate(self::MOBILE_ROUTE, ['_locale' => 'en'])
+//            )
+//        );
     }
 }

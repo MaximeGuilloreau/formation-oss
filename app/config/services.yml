@@ -26,6 +26,7 @@ services:
         class: AppBundle\Saver\ObjectSaver
         arguments:
             - '@doctrine.orm.entity_manager'
+            - '@event_dispatcher'
 
     formation_oss.mobile_detector:
         class: AppBundle\Detector\MobileDetector
@@ -36,7 +37,12 @@ services:
             - '@formation_oss.mobile_detector'
             - '@router'
         tags:
-            - { name: kernel.event_listener, event: kernel.request, method: analyzeRequest, priority: 255 }
+            - { name: kernel.event_listener, event: kernel.request, method: analyzeRequest }
+
+    formation_oss.storage_event.subscriber:
+        class: AppBundle\Listeners\StorageEventSubscriber
+        tags:
+            - { name: kernel.event_subscriber }
 
 
 

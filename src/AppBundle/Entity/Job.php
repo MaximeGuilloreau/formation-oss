@@ -7,6 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="AppBundle\Repository\JobRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Job
 {
@@ -34,14 +35,14 @@ class Job
     /**
      * @var \DateTime
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $createdAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
 
@@ -216,5 +217,17 @@ class Job
     public function setCompany(Company $company)
     {
         $this->company = $company;
+    }
+
+    /** @ORM\PrePersist */
+    public function prePersist()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
+    /** @ORM\PreUpdate */
+    public function preUpdate()
+    {
+        $this->updatedAt = new \DateTime();
     }
 }
