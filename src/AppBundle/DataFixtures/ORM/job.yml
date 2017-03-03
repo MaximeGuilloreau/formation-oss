@@ -1,0 +1,6 @@
+AppBundle\Entity\Job:
+    job_{1..50}:
+        title: <jobTitle()>
+        description: <text()>
+        category: '@category_*'
+        company: '@company_*'

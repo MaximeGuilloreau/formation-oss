@@ -2,3 +2,6 @@ app:
     prefix: "/{_locale}"
     resource: "@AppBundle/Controller/"
     type:     annotation
+
+security_logout:
+    path: /logout

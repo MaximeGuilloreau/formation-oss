@@ -1,4 +1,7 @@
 back_to_list: Back to list
+register: Register
+sign_up: Sign Up
+sign_in: Sign In
 category:
     list:
         title: Create a new category

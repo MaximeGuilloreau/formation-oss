@@ -18,6 +18,40 @@
                     Formation Oss
                 </a>
             </div>
+            {{ dump(app) }}
+
+                <div class="collapse navbar-collapse navbar-right">
+                    <ul class="nav navbar-nav">
+                        {% if app.user is not empty %}
+                            <li class="dropdown">
+                                <a
+                                        href="#"
+                                        class="dropdown-toggle"
+                                        data-toggle="dropdown"
+                                        role="button"
+                                        aria-haspopup="true"
+                                        aria-expanded="false">
+                                    {{ app.user.username }} <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path('security_logout') }}">{{ 'logout' | trans }}</a></li>
+                                    <li><a href="#">{{ 'my_account' | trans }}</a></li>
+                                </ul>
+                            </li>
+                        {% else %}
+                            <li>
+                                <a href="{{ path('security_signin') }}" >
+                                    {{ 'sign_in' | trans }}
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('security_signup') }}" >
+                                    {{ 'sign_up' | trans }}
+                                </a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
         </div>
     </nav>
     <div class="container" >

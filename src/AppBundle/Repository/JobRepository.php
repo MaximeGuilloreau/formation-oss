@@ -36,4 +36,19 @@ class JobRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    /**
+     * @return array
+     */
+    public function findAll()
+    {
+        // Add Join for avoid collection lazy loading
+        $qb = $this->createQueryBuilder('j')
+                ->addSelect('cat')
+                ->addSelect('comp')
+                ->join('j.category', 'cat')
+                ->join('j.company', 'comp');
+
+        return $qb->getQuery()->getResult();
+    }
 }

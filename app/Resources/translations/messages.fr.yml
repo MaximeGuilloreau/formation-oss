@@ -1,4 +1,5 @@
 back_to_list: Retour à la liste
+register: Enregister
 category:
     list:
         title: Créer une nouvelle categorie

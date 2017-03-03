@@ -1,0 +1,6 @@
+AppBundle\Entity\Address:
+    address_{1..20}:
+        number: <buildingNumber()>
+        street: <streetName()>
+        city: <city()>
+        zipcode: <postcode()>
